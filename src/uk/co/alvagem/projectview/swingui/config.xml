@@ -1,0 +1,500 @@
+<ProjectView>
+	<!--=============================================================-->
+	<!-- Command Frame                                               -->
+	<!--=============================================================-->
+	<CommandFrame>
+		<menus>
+			<menu display="File" mnemonic="F">
+				<menuitem 	action="ImportMSPXML" 
+							display="Import MS Project XML"
+							mnemonic="M"
+							/>
+			
+			<!-- 
+				<menuitem 	action="FileNew" 
+							display="New"
+							mnemonic="N"
+							accel="N"
+							accelmod="CTRL"/>
+				<menuitem 	action="FileOpen" 
+							display="Open"
+							mnemonic="O"
+							accel="O"
+							accelmod="CTRL"/>
+				<menuitem 	action="FileSave" 
+							display="Save"
+							mnemonic="S"
+							accel="S"
+							accelmod="CTRL"/>
+				<menuitem 	action="FileSaveAs" 
+							display="Save As"
+							mnemonic="A"/>
+				<separator/>
+				<menuitem 	action="FileProperties" 
+							display="Properties"
+							mnemonic="P"
+							accel="P"
+							accelmod="CTRL"/>
+				<separator/>
+ 				-->				
+				<menuitem 	action="FileExit" 
+							display="Exit"
+							mnemonic="X"/>
+			</menu>
+
+			<menu display="Resource" mnemonic="R">
+					<menuitem 	action="ResourceNew" 
+							display="New"
+							mnemonic="N"
+							accel="N"/>
+					<menuitem 	action="ResourceEdit" 
+							display="Edit"
+							mnemonic="E"
+							accel="E"/>
+					<menuitem 	action="ResourceDelete" 
+							display="Delete"
+							mnemonic="D"
+							accel="D"/>
+			</menu>
+
+			<menu display="Calendar" mnemonic="C">
+					<menuitem 	action="CalendarNew" 
+							display="New"
+							mnemonic="N"
+							accel="N"/>
+					<menuitem 	action="CalendarEdit" 
+							display="Edit"
+							mnemonic="E"
+							accel="E"/>
+					<menuitem 	action="CalendarDelete" 
+							display="Delete"
+							mnemonic="D"
+							accel="D"/>
+			</menu>
+
+			<menu display="Admin" mnemonic="A">
+					<menuitem 	action="FileSaveAs" 
+							display="Export Database"
+							mnemonic="E"/>
+					<menuitem 	action="FileOpen" 
+							display="Import Database"
+							mnemonic="I"/>
+					<separator/>
+							
+					<menuitem 	action="CheckDerived" 
+							display="Check Derived"
+							mnemonic="K"/>
+					<menuitem 	action="RollbackHistory" 
+							display="Rollback History"
+							mnemonic="R"/>
+					<separator/>
+
+					<menuitem 	action="CreateSchema" 
+							display="Create Database Tables"
+							mnemonic="D"/>
+					<menuitem 	action="UpdateSchema" 
+							display="Update Database Tables"
+							mnemonic="U"/>
+							
+					<menuitem 	action="SelectConfiguration" 
+							display="Select Database Configuration"
+							mnemonic="C"/>
+					<menuitem 	action="EditConnection" 
+							display="Edit Database Connection"
+							mnemonic="B"/>
+							
+					<menuitem 	action="ConfigureLocalServer" 
+							display="Configure Local Server"
+							mnemonic="L"/>
+					<menuitem 	action="StartLocalServer" 
+							display="Start Local Server"
+							mnemonic="S"/>
+					<menuitem 	action="StopLocalServer" 
+							display="Stop Local Server"
+							mnemonic="P"/>
+			</menu>
+
+			<menu display="Window" mnemonic="W">
+				<menuitem 	action="WindowPLAFMetal" 
+							display="Metal Look and Feel"
+							mnemonic="M"
+							/>
+				<menuitem 	action="WindowPLAFMotif" 
+							display="Motif Look and Feel"
+							mnemonic="O"
+							/>
+				<menuitem 	action="WindowPLAFWindows" 
+							display="Windows Look and Feel"
+							mnemonic="W"
+							/>
+			</menu>
+			
+			<menu display="Help" mnemonic="H">
+				<menuitem 	action="HelpAbout" 
+							display="About"
+							mnemonic="A"
+							/>
+			</menu>
+			
+			
+		</menus>
+	</CommandFrame>
+	
+	<ProjectsExplorer>
+		<popups>
+			<popup name="Projects">
+				<menuitem 	action="LookupProject" 
+							display="Lookup Project"
+							mnemonic="L"
+							/>
+				<menuitem 	action="NewProject" 
+							display="New Project"
+							mnemonic="N"
+							/>
+				<menuitem 	action="RemoveProject" 
+							display="Remove Project"
+							mnemonic="R"
+							/>
+							
+			</popup>
+
+			<popup name="TaskProxy">
+				<menuitem 	action="EditTask" 
+							display="EditTask"
+							mnemonic="E"
+							/>
+				<menuitem 	action="InsertTask" 
+							display="Insert Task"
+							mnemonic="I"
+							accel="I"
+							accelmod="CTRL"							
+							/>
+				<menuitem 	action="AddChildTask" 
+							display="Add Child Task"
+							mnemonic="T"
+							/>
+				<menuitem 	action="DeleteTask" 
+							display="Delete Task"
+							mnemonic="D"
+							/>
+				
+				<menu display="Move Task" mnemonic="M">			
+					<menuitem 	action="PushdownTask" 
+							display="Push Down"
+							mnemonic="O"
+							/>
+					<menuitem display="Promote" 
+						action="PromoteTask"
+						mnemonic="P"
+						accel="P"
+						accelmod="CTRL"
+						/>
+
+					<menuitem display="Demote" 
+						action="DemoteTask"
+						/>
+
+					<menuitem display="Move Up" 
+						action="MoveUpTask"
+						mnemonic="U"
+						accel="U"
+						accelmod="CTRL"
+						/>
+
+					<menuitem display="Move Down" 
+						action="MoveDownTask"
+						mnemonic="D"
+						accel="D"
+						accelmod="CTRL"
+						/>
+				</menu>
+							
+				<menuitem   action="TaskToTable"
+							display="Show Tasks as Table"
+							mnemonic="A"
+							/>							
+				<menuitem   action="ScheduleTask"
+							display="Schedule Task"
+							mnemonic="S"
+							/>							
+				<menuitem   action="DisplayGantt"
+							display="Show Gantt chart"
+							mnemonic="G"
+							/>							
+				<menuitem   action="MonteCarloSchedule"
+							display="Monte-Carlo Scheduling"
+							/>							
+				<menuitem   action="ShowGraph"
+							display="Graph History Data"
+							/>							
+				<menuitem   action="ShowHistory"
+							display="Show Task History"
+							/>
+														
+				<menuitem   action="ShowUncertaintyCurve"
+							display="Show Uncertainty Curve"
+							/>
+														
+				<menuitem   action="ShowResourceUtilisation"
+							display="Show Resource Utilisation"
+							/>
+														
+				<separator/>
+				
+				<menu display="Dependencies" mnemonic="D">
+					<!-- 
+					<menuitem 	action="AddDependency" 
+								display="Add Dependency"
+								mnemonic="P"
+								/>
+					-->
+					<menuitem 	action="EditDependency" 
+								display="Edit Dependency"
+								mnemonic="I"
+								/>
+					<menuitem 	action="RemoveDependency" 
+								display="Remove Dependency"
+								mnemonic="O"
+								/>
+				</menu>
+				<separator/>
+				
+				<menu display="Constraints" mnemonic="F">
+				
+					<menuitem 	action="AddConstraint" 
+								display="Add Constraint"
+								mnemonic="A"
+								/>
+					<menuitem 	action="EditConstraint" 
+								display="Edit Constraint"
+								mnemonic="E"
+								/>
+								
+					<menuitem 	action="RemoveConstraint" 
+								display="Remove Constraint"
+								mnemonic="R"
+								/>
+				</menu>
+				<separator/>
+				<menu display="Resources" mnemonic="R">
+				
+					<menuitem 	action="AllocateResource" 
+								display="Allocate Resource"
+								mnemonic="A"
+								/>
+					<menuitem 	action="EditAllocation" 
+								display="Edit Allocation"
+								mnemonic="E"
+								/>
+					<menuitem 	action="RemoveAllocation" 
+								display="RemoveResource"
+								mnemonic="R"
+								/>
+							
+				</menu>
+			</popup>
+		
+		
+		</popups>
+		<toolbar>
+			<button display="Link" 
+				action="LinkTasks"
+				mnemonic="L"
+				accel="L"
+				accelmod="CTRL"/>
+				
+			<button display="Unlink" 
+				action="UnlinkTasks"/>
+
+			<button display="Promote" 
+				action="PromoteTask"
+				mnemonic="P"
+				accel="P"
+				accelmod="CTRL"/>
+
+			<button display="Demote" 
+				action="DemoteTask"
+				/>
+
+			<button display="Move Up" 
+				action="MoveUpTask"
+				mnemonic="U"
+				accel="U"
+				accelmod="CTRL"/>
+
+			<button display="Move Down" 
+				action="MoveDownTask"
+				mnemonic="D"
+				accel="D"
+				accelmod="CTRL"/>
+
+		</toolbar>
+		
+		
+	</ProjectsExplorer>
+	
+	<TaskTable>
+		<menus>
+			<menu display="File" mnemonic="F">
+			
+				<menuitem 	action="ExportCSV" 
+							display="Export as CSV"
+							mnemonic="E"
+							accel="E"
+							accelmod="CTRL"/>
+			</menu>
+
+			<menu display="Columns" mnemonic="C">
+			
+				<menuitem 	action="SelectFields" 
+							display="Select Columns"
+							mnemonic="S"
+							/>
+			</menu>
+
+			<menu display="Rows" mnemonic="R">
+			
+				<menuitem 	action="SetFilter" 
+							display="Set Filter"
+							mnemonic="S"
+							/>
+				<menuitem 	action="ClearFilter" 
+							display="Clear Filter"
+							mnemonic="C"
+							/>
+			</menu>
+			
+			
+		
+		</menus>
+	</TaskTable>
+	
+	<TaskFilterExplorer>
+		<popups>
+			<popup name="TaskFilter">
+				<menuitem 	action="AddFilter" 
+							display="Add Child Filter"
+							mnemonic="A"
+							/>
+				<menuitem 	action="EditFilter" 
+							display="Edit Filter"
+							mnemonic="E"
+							/>
+				<menuitem 	action="DeleteFilter" 
+							display="Delete Filter"
+							mnemonic="D"
+							/>
+							
+			</popup>
+			
+		</popups>
+	</TaskFilterExplorer>
+
+	<!--=============================================================-->
+	<!-- Time Diagram Viewer										 -->
+	<!--=============================================================-->
+	<TimeDiagramViewer>
+		<menus>
+			<menu display="File" mnemonic="F">
+				<menuitem 	action="FileExportJPG" 
+							display="Export as JPEG"
+							mnemonic="J"
+							/>
+				<menuitem 	action="FileExportPNG" 
+							display="Export as PNG"
+							mnemonic="P"
+							/>
+			
+			</menu>
+		
+			<menu display="Edit" mnemonic="E">
+
+				<menuitem 	action="EditBackground" 
+							display="Edit Background Colour"
+							mnemonic="B"
+							/>
+			
+			</menu>
+		
+			<menu display="Zoom" mnemonic="Z">
+				<menuitem 	action="WindowZoomIn" 
+							display="Zoom In"
+							mnemonic="I"
+							/>
+				<menuitem 	action="WindowZoomOut" 
+							display="Zoom Out"
+							mnemonic="O"
+							/>
+				<menuitem 	action="WindowZoom10" 
+							display="Zoom 10%"
+							mnemonic="M" 
+							/> <!-- minute -->
+				<menuitem 	action="WindowZoom25" 
+							display="Zoom 25%"
+							mnemonic="T" 
+							/> <!-- tiny -->
+				<menuitem 	action="WindowZoom50" 
+							display="Zoom 50%"
+							mnemonic="S"
+							/>  <!-- small -->
+				<menuitem 	action="WindowZoom100" 
+							display="Zoom 100%"
+							mnemonic="N" 
+							/> <!-- normal -->
+				<menuitem 	action="WindowZoom200" 
+							display="Zoom 200%"
+							mnemonic="L" 
+							/> <!-- large -->
+				<menuitem 	action="WindowZoom400" 
+							display="Zoom 400%"
+							mnemonic="E" 
+							/> <!-- enormous -->
+				<menuitem 	action="WindowFit" 
+							display="Fit To Window"
+							mnemonic="F"
+							/>
+			</menu>
+			
+			<menu display="Display" mnemonic="D">
+
+				<menuitem 	action="ScaleDays" 
+							display="Scale Days"
+							mnemonic="D"
+							/>
+
+				<menuitem 	action="ScaleWeeks" 
+							display="Scale Weeks"
+							mnemonic="W"
+							/>
+
+				<menuitem 	action="ScaleMonths" 
+							display="Scale Months"
+							mnemonic="M"
+							/>
+
+				<menuitem 	action="ScaleYears" 
+							display="Scale Years"
+							mnemonic="Y"
+							/>
+
+			</menu>
+		
+		</menus>
+		
+		<popups>
+			<popup name="Background">
+
+				<menuitem 	action="EditBackground" 
+							display="Edit Background Colour"
+							mnemonic="B"
+							/>
+
+			</popup>
+
+			
+			
+		</popups>
+		
+	</TimeDiagramViewer>
+
+</ProjectView>

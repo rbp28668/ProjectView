@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: uk.co.alvagem.projectview.swingui.Main
+Class-Path: antlr-2.7.5H3.jar asm-attrs.jar asm.jar cglib-2.1.jar commons-collections-2.1.1.jar commons-logging-1.0.4.jar commons-math-1.2.jar dom4j-1.6.jar ehcache-1.1.jar hibernate3.jar hsqldb.jar jaxen-1.1-beta-4.jar jdbc2_0-stdext.jar jcommon-1.0.14.jar jfreechart-1.0.11.jar jta.jar log4j-1.2.8.jar serializer.jar xerces-2.6.2.jar xml-apis.jar 

@@ -1,0 +1,17 @@
+
+# test database
+test.lck
+test.properties
+test.script
+
+# old subversion folders
+**/.svn/
+
+# avoid real project plans used for testing
+MSImport/**
+
+# contents of build/deployment folders.
+bin/**
+deploy/**
+build/**
+

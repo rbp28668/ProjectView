@@ -1,0 +1,2 @@
+See http://www.hibernate.org/328.html  for DAO stuff.
+

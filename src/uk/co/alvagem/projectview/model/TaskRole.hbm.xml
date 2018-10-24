@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="uk.co.alvagem.projectview.model.TaskRole" 
+    	table="TASKROLE"
+    	discriminator-value="TASK">
+
+        <id name="id" column="TASKROLE_ID">
+            <generator class="native"/>
+        </id>
+
+		<discriminator column="ROLE_TYPE"/>
+
+    	<version name="version" unsaved-value="undefined"/>
+		<property name="timestamp" type="timestamp" column="TSTAMP"/>
+		<property name="user" length="30" column="USERNAME"/>
+		<property name="uid" length="32" column="UID"/>
+		<property name="externalId" length="32" column="EXTERNAL_ID"/>
+		
+		<subclass name="uk.co.alvagem.projectview.model.ProjectRole"
+			discriminator-value="PROJ">
+			<property name="projectCode" length="30" column="PROJECT_CODE"/>
+			<property name="projectURL" length="255" column="PROJECT_URL"/>
+		</subclass>
+		
+		<subclass name="uk.co.alvagem.projectview.model.MilestoneRole"
+			discriminator-value="MILE">
+			<property name="payment" type="float" column="PAYMENT"/>
+		</subclass>
+			
+    </class>
+
+</hibernate-mapping>

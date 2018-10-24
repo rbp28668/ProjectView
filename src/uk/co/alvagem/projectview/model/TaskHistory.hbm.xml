@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="uk.co.alvagem.projectview.model.TaskHistory" table="TASK_HISTORY">
+
+        <id name="id" column="HISTORY_ID">
+            <generator class="native"/>
+        </id>
+
+    	<version name="version" unsaved-value="undefined"/>
+		<property name="timestamp" type="timestamp" column="TSTAMP"/>
+		<property name="user" length="30" column="USERNAME"/>
+		<property name="uid" length="32" column="UID"/>
+		<property name="externalId" length="32" column="EXTERNAL_ID"/>
+
+		<property name="timePoint"/>
+		<property name="actualWork"/>
+		<property name="estimatedEffort"/>
+		<property name="estimateSpread"/>
+		<property name="alpha"/>
+		<property name="beta"/>
+		<property name="uncertaintyTypeName" length="10" column = "UNCERTAINTY_TYPE"/>
+		<property name="elapsedTime"/>
+		<property name="effortDriven"/>
+		<property name="fractionComplete"/>
+		<property name="startDate" type = "timestamp"/>
+		<property name="finishDate" type = "timestamp"/>
+
+ 
+    </class>
+
+</hibernate-mapping>

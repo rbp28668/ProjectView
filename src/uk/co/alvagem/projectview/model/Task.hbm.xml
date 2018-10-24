@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="uk.co.alvagem.projectview.model.Task" table="TASK">
+
+        <id name="id" column="TASK_ID">
+            <generator class="native"/>
+        </id>
+
+    	<version name="version"  unsaved-value="undefined"/>
+		<property name="timestamp" type="timestamp" column="TSTAMP"/>
+		<property name="user" length="30" column="USERNAME"/>
+		<property name="uid" length="32" column="UID"/>
+		<property name="externalId" length="32" column="EXTERNAL_ID"/>
+		
+		<property name="name" length="255" not-null="true"/>
+		<property name="description" column="TASK_DESC" length="512"/>
+		<property name="notes" column="TASK_NOTES" length="2000"/>
+		<property name="workPackage" column="TASK_WORK_PKG" type="long"/>
+		<property name="priority" column="TASK_PRIORITY"/>
+
+		<many-to-one name="parent"  class="uk.co.alvagem.projectview.model.Task" column="PARENT_ID"/>
+		
+		<!-- History now not needed except to record updates -->
+        <list name="history" lazy="true" cascade="all-delete-orphan">
+            <key column="TASK_ID" not-null="true"/>
+            <list-index column="HISTORY_ORDER"/>
+            <one-to-many class="uk.co.alvagem.projectview.model.TaskHistory"/>
+        </list>
+
+        <list name="subTasks" lazy="true" cascade="save-update">
+            <key column="PARENT_ID" />
+            <list-index column="TASK_ORDER"/>
+            <one-to-many class="uk.co.alvagem.projectview.model.Task"/>
+        </list>
+
+        <set name="constraints" lazy="true" cascade="all-delete-orphan">
+            <key column="TASK_ID" />
+            <one-to-many class="uk.co.alvagem.projectview.model.Constraint"/>
+        </set>
+
+		<!-- Task is successor of its predecessors hence ID -->
+        <set name="predecessors" lazy="true" inverse="true">
+            <key column="SUCC_ID" />
+            <one-to-many class="uk.co.alvagem.projectview.model.Dependency"/>
+        </set>
+        
+        <!-- Task is predecessor of its successors hence ID --> 
+        <set name="successors" lazy="true" inverse="true">
+            <key column="PRED_ID" />
+            <one-to-many class="uk.co.alvagem.projectview.model.Dependency"/>
+        </set>
+
+        <set name="allocations" lazy="true" cascade="all-delete-orphan">
+            <key column="TASK_ID" />
+            <one-to-many class="uk.co.alvagem.projectview.model.Allocation"/>
+        </set>
+
+		<!-- Current state of the task - effectively the head of the history list -->
+		<property name="actualWork"/>
+		<property name="estimatedEffort"/>
+		<property name="estimateSpread"/>
+		<property name="alpha"/>
+		<property name="beta"/>
+		<property name="uncertaintyTypeName" length="10" column = "UNCERTAINTY_TYPE"/>
+		<property name="elapsedTime"/>
+		<property name="effortDriven"/>
+		<property name="fractionComplete"/>
+		<property name="startDate" type = "timestamp"/>
+		<property name="finishDate" type = "timestamp"/>
+
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="uk.co.alvagem.projectview.model.Allocation" table="ALLOCATION">
+
+        <id name="id" column="ALLOCATION_ID">
+            <generator class="native"/>
+        </id>
+
+    	<version name="version" unsaved-value="undefined"/>
+		<property name="timestamp" type="timestamp" column="TSTAMP"/>
+		<property name="user" length="30" column="USERNAME"/>
+		<property name="uid" length="32" column="UID"/>
+		<property name="externalId" length="32" column="EXTERNAL_ID"/>
+		
+		<property name="utilisation"/>
+
+		<!--  Note not-null set to false to get round hibernate delete problem 
+		Attempt to insert null into a non-nullable column: column: TASK_ID table: ALLOCATION in statement 
+		[update ALLOCATION set TASK_ID=null where TASK_ID=? and ALLOCATION_ID=?]
+		-->
+		<many-to-one 
+			name="task"
+			class="uk.co.alvagem.projectview.model.Task"
+			column="TASK_ID"
+			not-null="false" 
+			/>
+
+		<many-to-one 
+			name="resource"
+			class="uk.co.alvagem.projectview.model.Resource"
+			column="RESOURCE_ID"
+			not-null="true" 
+			/>
+
+    </class>
+
+</hibernate-mapping>

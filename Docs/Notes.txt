@@ -1,0 +1,5 @@
+
+
+Need to traverse down is problematic.  Would be good if aggregate values are up to date.
+
+If child is modified then it would need to update parent up to root. 

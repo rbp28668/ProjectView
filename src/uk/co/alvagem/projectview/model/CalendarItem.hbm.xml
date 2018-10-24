@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="uk.co.alvagem.projectview.model.CalendarItem" 
+    	table="CALENDARITEM"
+    	discriminator-value="ITM">
+
+
+
+        <id name="id" column="CALITEM_ID">
+            <generator class="native"/>
+        </id>
+
+		<discriminator column="ITEM_TYPE"/>
+
+    	<version name="version" unsaved-value="undefined"/>
+		<property name="timestamp" type="timestamp" column="TSTAMP"/>
+		<property name="user" length="30" column="USERNAME"/>
+		<property name="uid" length="32" column="UID"/>
+		<property name="externalId" length="32" column="EXTERNAL_ID"/>
+
+		<property name="dayFraction" type="float" column="DAY_FRACTION"/>
+				
+		<subclass name="uk.co.alvagem.projectview.model.DayCalendarItem"
+			discriminator-value="DAY">
+			<property name="day" type="date" column="DAY"/>
+		</subclass>
+		
+		<subclass name="uk.co.alvagem.projectview.model.DayOfWeekCalendarItem"
+			discriminator-value="DOW">
+			<property name="whichDay" column="DAY_OF_WEEK"/>
+		</subclass>
+			
+    </class>
+
+</hibernate-mapping>

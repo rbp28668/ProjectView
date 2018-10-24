@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="uk.co.alvagem.projectview.model.Dependency" table="DEPENDENCY">
+
+        <id name="id" column="DEPENDENCY_ID">
+            <generator class="native"/>
+        </id>
+
+    	<version name="version" unsaved-value="undefined"/>
+		<property name="timestamp" type="timestamp" column="TSTAMP"/>
+		<property name="user" length="30" column="USERNAME"/>
+		<property name="uid" length="32" column="UID"/>
+		<property name="externalId" length="32" column="EXTERNAL_ID"/>
+		
+		<property name="lag" not-null="true"/>
+
+		<many-to-one 
+			name="predecessor"
+			class="uk.co.alvagem.projectview.model.Task"
+			column="PRED_ID"
+			not-null="true" 
+			/>
+		<many-to-one 
+			name="successor"
+			class="uk.co.alvagem.projectview.model.Task"
+			column="SUCC_ID"
+			not-null="true" 
+			/>
+			
+
+    </class>
+
+</hibernate-mapping>
