@@ -11,9 +11,9 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 
-import uk.co.alvagem.projectview.model.Allocation;
+import uk.co.alvagem.database.DAOFactory;
+import uk.co.alvagem.projectview.dao.TaskDAO;
 import uk.co.alvagem.projectview.model.Task;
-import uk.co.alvagem.projectview.swingui.widgets.ResourceSelectionEditor;
 import uk.co.alvagem.projectview.swingui.widgets.UncertaintyTypeSelectionEditor;
 import uk.co.alvagem.swingui.BasicDialog;
 import uk.co.alvagem.swingui.SwingForm;
@@ -28,7 +28,7 @@ public class TaskEditor extends BasicDialog {
     /** Panel for handling property edit - presented in the properties tab */
     private PropertiesPanel propertiesPanel;
 
-    TaskEditor(Component parent, Task task){
+    public TaskEditor(Component parent, Task task){
         super(parent,"Edit Task");
         propertiesPanel = new PropertiesPanel(task);
         getContentPane().add(propertiesPanel, BorderLayout.CENTER);
@@ -133,6 +133,60 @@ public class TaskEditor extends BasicDialog {
             return valid;
         }
 
+    }
+
+    
+    /**
+     * Edits a given task.  Here so that it can be triggered from a mouse-click, package
+     * visibility so that it can be called from the explorer.
+     * @param component is the parent UI component for the editor.
+     * @param task is the task to be edited.
+     * @throws Exception
+     */
+    public static void editTask(Component component, Task task) throws Exception{
+        DAOFactory factory = DAOFactory.instance(DAOFactory.HIBERNATE);
+        TaskEditor editor;
+        
+        // Make sure task is initialised enough to be editable.
+        factory.beginTransaction();
+        TaskDAO dao = factory.getTaskDAO();
+        try {
+            dao.makePersistent(task);
+            task.getHistory().size();
+            editor = new TaskEditor(component,task);
+            factory.commit();
+        } catch (Exception e) {
+            factory.rollback();
+            throw e;
+        }
+
+        editor.setVisible(true);
+
+        if(editor.wasEdited()){
+            factory.beginTransaction();
+            dao = factory.getTaskDAO();
+            try {
+                dao.makePersistent(task);
+                task.commitHistory();
+                updateParents(task,dao);
+                factory.commit();
+            } catch (Exception e) {
+                factory.rollback();
+                throw e;
+            }
+            
+        }
+
+    }
+    
+    private static void updateParents(Task task, TaskDAO dao){
+    	task = task.getParent();
+    	while(task != null){
+        	dao.makePersistent(task);
+        	task.updateCompositeValues();
+        	task.commitHistory();
+        	task = task.getParent();
+    	}
     }
 
  }

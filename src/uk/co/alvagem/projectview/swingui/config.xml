@@ -220,7 +220,11 @@
 				<menuitem   action="DisplayGantt"
 							display="Show Gantt chart"
 							mnemonic="G"
-							/>							
+							/>	
+				<menuitem   action="DisplayKanban"
+							display="Show Kanban Board"
+							mnemonic="K"
+							/>	
 				<menuitem   action="MonteCarloSchedule"
 							display="Monte-Carlo Scheduling"
 							/>							

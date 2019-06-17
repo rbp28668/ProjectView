@@ -4,6 +4,9 @@ test.lck
 test.properties
 test.script
 
+# database dumps
+dump*
+
 # old subversion folders
 **/.svn/
 
@@ -15,3 +18,4 @@ bin/**
 deploy/**
 build/**
 
+/bin/
