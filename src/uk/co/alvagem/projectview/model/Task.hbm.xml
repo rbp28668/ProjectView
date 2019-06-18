@@ -72,6 +72,7 @@
 		<property name="fractionComplete"/>
 		<property name="startDate" type = "timestamp"/>
 		<property name="finishDate" type = "timestamp"/>
+		<property name="active"/>
 		<property name="intStatus" type="integer" column="STATUS"/>
 
 

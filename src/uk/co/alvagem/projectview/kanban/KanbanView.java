@@ -85,14 +85,27 @@ public class KanbanView extends JInternalFrame {
     }
 
 	public void setRootTask(Task rootTask) {
-		for(Task task : rootTask.getSubTasks()) {
-			Column c = columns.get(task.getStatus().ordinal()); 
-			Tile tile = new Tile(c, task);
-			c.add(tile); 
-			taskTiles.put(keyOfTask(task), tile);
-		}
+		setTitle(rootTask.getName());
+		addChildTasks(rootTask);
 	}
 
+	/**
+	 * Recursively adds all the child tasks to the board.
+	 * @param task
+	 */
+	private void addChildTasks(Task task) {
+		for(Task t : task.getSubTasks()) {
+			if(t.getSubTasks().isEmpty()) {
+				Column c = columns.get(t.getStatus().ordinal()); 
+				Tile tile = new Tile(c, t);
+				c.add(tile); 
+				taskTiles.put(keyOfTask(t), tile);
+			} else {
+				addChildTasks(t);
+			}
+		}
+
+	}
 	public Object keyOfTask(Task t) {
 		String key = "task:" + t.getId();
 		return key;
