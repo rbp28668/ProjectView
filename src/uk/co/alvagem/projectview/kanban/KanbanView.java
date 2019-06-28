@@ -234,7 +234,8 @@ public class KanbanView extends JInternalFrame {
 		void moveToColumn(Column newColumn) {
 			column.remove(this);
 			newColumn.add(this);
-			column.revalidate();  
+			column.revalidate();
+			column.repaint();
 			newColumn.revalidate();
 			
 			updateStatus(newColumn.columnStatus);
