@@ -31,7 +31,7 @@ import uk.co.alvagem.projectview.dao.ResourceDAO;
 import uk.co.alvagem.projectview.dao.TaskDAO;
 import uk.co.alvagem.projectview.gantt.TimeDiagram;
 import uk.co.alvagem.projectview.gantt.TimeDiagramViewer;
-import uk.co.alvagem.projectview.kanban.KanbanView;
+import uk.co.alvagem.projectview.kanban.KanbanViewFrame;
 import uk.co.alvagem.projectview.model.Allocation;
 import uk.co.alvagem.projectview.model.Constraint;
 import uk.co.alvagem.projectview.model.Dependency;
@@ -1244,11 +1244,11 @@ private final Action actionDisplayKanban= new AbstractAction() {
             TaskDAO daoTask = factory.getTaskDAO();
             daoTask.makePersistent(selected);
 
-            KanbanView view = new KanbanView(app);
-            view.setRootTask(selected);
+            KanbanViewFrame kanban = new KanbanViewFrame(app);
+            kanban.setRootTask(selected);
 
-            app.getCommandFrame().getDesktop().add(view);
-            view.setVisible(true);
+            app.getCommandFrame().getDesktop().add(kanban);
+            kanban.setVisible(true);
             
          } catch(Throwable t) {
             showException(t);

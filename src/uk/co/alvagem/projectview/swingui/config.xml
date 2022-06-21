@@ -140,6 +140,7 @@
 		</menus>
 	</CommandFrame>
 	
+	<!-- =============================================================================================== -->
 	<ProjectsExplorer>
 		<popups>
 			<popup name="Projects">
@@ -337,6 +338,17 @@
 		
 	</ProjectsExplorer>
 	
+	<!-- =============================================================================================== -->
+	<KanbanView>
+		<toolbar>
+			<button display="New Task" 
+			action="NewTask"
+			mnemonic="N" />
+		</toolbar>
+	</KanbanView>
+	
+	
+	<!-- =============================================================================================== -->
 	<TaskTable>
 		<menus>
 			<menu display="File" mnemonic="F">
