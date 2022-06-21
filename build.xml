@@ -71,7 +71,7 @@
 	<target name="compile" 
 		depends="prepare" 
 		description="Compiles all source">
-		<javac srcdir="${src.dir}" destdir="${build.classes}" source="1.5">
+		<javac srcdir="${src.dir}" destdir="${build.classes}" source="1.8">
 			<classpath refid="classpath"/>
 		</javac>
 	</target>
@@ -136,7 +136,7 @@
 	== docs target: Builds Javadoc for the source 
 	========================================================-->
 	<target name="docs" depends="makejar">
-		<javadoc sourcepath="${src.dir}" destdir="${build.docs}" source="1.5" >
+		<javadoc sourcepath="${src.dir}" destdir="${build.docs}" source="1.8" >
 			
 			<package name="uk.co.alvagem.projectview.*"/>
 			

@@ -84,49 +84,7 @@ public class ProjectsExplorer extends ExplorerTree {
      * @throws Exception
      */
     void editTask(Component component, Task task) throws Exception{
-        DAOFactory factory = DAOFactory.instance(DAOFactory.HIBERNATE);
-        TaskEditor editor;
-        
-        // Make sure task is initialised enough to be editable.
-        factory.beginTransaction();
-        TaskDAO dao = factory.getTaskDAO();
-        try {
-            dao.makePersistent(task);
-            task.getHistory().size();
-            editor = new TaskEditor(component,task);
-            factory.commit();
-        } catch (Exception e) {
-            factory.rollback();
-            throw e;
-        }
-
-        editor.setVisible(true);
-
-        if(editor.wasEdited()){
-            factory.beginTransaction();
-            dao = factory.getTaskDAO();
-            try {
-                dao.makePersistent(task);
-                task.commitHistory();
-                updateParents(task,dao);
-                factory.commit();
-            } catch (Exception e) {
-                factory.rollback();
-                throw e;
-            }
-            
-        }
-
-    }
-    
-    private void updateParents(Task task, TaskDAO dao){
-    	task = task.getParent();
-    	while(task != null){
-        	dao.makePersistent(task);
-        	task.updateCompositeValues();
-        	task.commitHistory();
-        	task = task.getParent();
-    	}
+        TaskEditor.editTask(component, task);
     }
     
     /* (non-Javadoc)

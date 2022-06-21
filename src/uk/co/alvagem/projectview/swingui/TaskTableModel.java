@@ -20,6 +20,7 @@ import uk.co.alvagem.projectview.model.Allocation;
 import uk.co.alvagem.projectview.model.Constraint;
 import uk.co.alvagem.projectview.model.Dependency;
 import uk.co.alvagem.projectview.model.Task;
+import uk.co.alvagem.projectview.model.TaskStatus;
 import uk.co.alvagem.ui.Field;
 import uk.co.alvagem.ui.FieldTemplate;
 import uk.co.alvagem.ui.FormTemplate;
@@ -61,6 +62,7 @@ public class TaskTableModel extends AbstractTableModel {
         template.add(new FieldTemplate(Task.class, "Notes","notes"));
         template.add(new FieldTemplate(Task.class, "Parent","parent",FieldTemplate.OBJECT)
             .setWidgetType("parent"));
+        template.add(new FieldTemplate(Task.class, "Status","status",FieldTemplate.OBJECT).setWidgetType("status"));
         template.add(new FieldTemplate(Task.class, "Work Package","workPackage"));
         template.add(new FieldTemplate(Task.class, "Actual Work", "actualWork", ElapsedTimeHandler.TYPE_KEY));
         template.add(new FieldTemplate(Task.class, "Estimated Effort", "estimatedEffort", ElapsedTimeHandler.TYPE_KEY));
@@ -88,6 +90,7 @@ public class TaskTableModel extends AbstractTableModel {
         widgets.put("predecessors", new PredecessorWidget());
         widgets.put("successors", new SuccessorWidget());
         widgets.put("allocations", new AllocationSetWidget());
+        widgets.put("status", new StatusWidget());
     }
     
     /**
@@ -358,5 +361,17 @@ public class TaskTableModel extends AbstractTableModel {
             return values.toString();
         }
     }
-    
+
+    /**
+     * StatusWidget displays the status value
+     */
+    private static class StatusWidget extends Widget {
+
+        @Override
+        public String translate(Object value) {
+        	TaskStatus status = (TaskStatus)value;
+        	return status.getName();
+        }
+    }
+
 }

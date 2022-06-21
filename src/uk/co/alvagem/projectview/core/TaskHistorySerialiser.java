@@ -14,6 +14,7 @@ import uk.co.alvagem.database.DAOFactory;
 import uk.co.alvagem.projectview.dao.TaskHistoryDAO;
 import uk.co.alvagem.projectview.model.Task;
 import uk.co.alvagem.projectview.model.TaskHistory;
+import uk.co.alvagem.projectview.model.TaskStatus;
 import uk.co.alvagem.projectview.model.UncertaintyType;
 import uk.co.alvagem.util.IXMLContentHandler;
 import uk.co.alvagem.util.InputException;
@@ -116,10 +117,12 @@ public class TaskHistorySerialiser extends FactoryBase implements IXMLContentHan
             } catch (ParseException e) {
                 throw new InputException("Unable to parse finish date");
             }
-	    }
+	    } else if(local.equals("Status")){
+            current.setStatus(TaskStatus.valueOf(getText()));
+        }
+    }
 	     
 
-	}
 
 	public void writeXML(XMLWriter out, TaskHistory history) throws IOException{
 		out.startEntity(ENTITY);
@@ -147,6 +150,7 @@ public class TaskHistorySerialiser extends FactoryBase implements IXMLContentHan
 		out.textEntity("FractionComplete",Float.toString(history.getFractionComplete()));
 		out.textEntity("StartDate",FMT.format(history.getStartDate()));
 		out.textEntity("FinishDate",FMT.format(history.getFinishDate()));
+		out.textEntity("Status", history.getStatus().name());
 	}
 
 }

@@ -338,6 +338,7 @@ public class Task extends PersistentBase implements Persistent {
         to.setFractionComplete(from.getFractionComplete());
         to.setStartDate(from.getStartDate());
         to.setActive(from.isActive());
+        to.setStatus(from.getStatus());
     }
 
 	/** Used to signal a node has changed. If it has, then any parent tasks' composite
@@ -755,6 +756,29 @@ public class Task extends PersistentBase implements Persistent {
     public void setActive(boolean b) {
         current.setActive(b);
     }
+
+    public TaskStatus getStatus() {
+    	return current.getStatus();
+    }
+    
+    public void setStatus(TaskStatus status) {
+    	current.setStatus(status);
+    }
+
+	/**
+	 * Used to map the enum into a standard int field in the db.
+	 * @return the status
+	 */
+	public int getIntStatus() {
+		return current.getIntStatus();
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setIntStatus(Integer status) {
+		current.setIntStatus(status);
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()

@@ -31,6 +31,7 @@ import uk.co.alvagem.projectview.dao.ResourceDAO;
 import uk.co.alvagem.projectview.dao.TaskDAO;
 import uk.co.alvagem.projectview.gantt.TimeDiagram;
 import uk.co.alvagem.projectview.gantt.TimeDiagramViewer;
+import uk.co.alvagem.projectview.kanban.KanbanViewFrame;
 import uk.co.alvagem.projectview.model.Allocation;
 import uk.co.alvagem.projectview.model.Constraint;
 import uk.co.alvagem.projectview.model.Dependency;
@@ -80,6 +81,7 @@ public class ProjectsExplorerActionSet extends ActionSet {
 
         addAction("ScheduleTask", actionScheduleTask);
         addAction("DisplayGantt", actionDisplayGantt);
+        addAction("DisplayKanban", actionDisplayKanban);
         addAction("MonteCarloSchedule",actionMonteCarloSchedule);
         addAction("ShowGraph", actionShowGraph);
         addAction("ShowHistory", actionShowHistory);
@@ -1229,6 +1231,32 @@ private final Action actionDisplayGantt= new AbstractAction() {
         }
     }
 };
+
+private final Action actionDisplayKanban= new AbstractAction() { 
+    private static final long serialVersionUID = 1L;
+
+    public void actionPerformed(ActionEvent e) {
+        try {
+            Task selected = explorer.getSelectedTask();
+            
+            DAOFactory factory = DAOFactory.instance(DAOFactory.HIBERNATE);
+
+            TaskDAO daoTask = factory.getTaskDAO();
+            daoTask.makePersistent(selected);
+
+            KanbanViewFrame kanban = new KanbanViewFrame(app);
+            kanban.setRootTask(selected);
+
+            app.getCommandFrame().getDesktop().add(kanban);
+            kanban.setVisible(true);
+            
+         } catch(Throwable t) {
+            showException(t);
+        }
+    }
+};
+
+
 private final Action actionMonteCarloSchedule= new AbstractAction() { 
     private static final long serialVersionUID = 1L;
 

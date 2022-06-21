@@ -51,8 +51,11 @@ public class TaskHistory  extends PersistentBase implements Persistent {
     /** current best guess as to finish date */
     private long finishDate;
     
-    /** Whether the task is active (i.e. not deleted )   */
+    /** Whether the task is active (i.e. not deleted ). Inactive tasks are retained for their history   */
     private boolean active;
+    
+    /** Current state of the task for workflow / Kanban etc */
+    private TaskStatus status;
     
     public TaskHistory(){
         Date now = new Date();
@@ -69,6 +72,7 @@ public class TaskHistory  extends PersistentBase implements Persistent {
         startDate = now.getTime();
         finishDate = now.getTime();
         active = true;
+        status = TaskStatus.NEW;
     }
     
     
@@ -288,5 +292,40 @@ public class TaskHistory  extends PersistentBase implements Persistent {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+
+	/**
+	 * @return the status
+	 */
+	public TaskStatus getStatus() {
+		return status;
+	}
+
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(TaskStatus status) {
+		this.status = status;
+	}
+ 
+	/**
+	 * Used to map the enum into a standard int field in the db.
+	 * @return the status
+	 */
+	public int getIntStatus() {
+		return status.ordinal();
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setIntStatus(Integer status) {
+		if(status == null) {
+			this.status = TaskStatus.NEW;
+		} else {
+			this.status = TaskStatus.values()[status];
+		}
+	}
     
 }

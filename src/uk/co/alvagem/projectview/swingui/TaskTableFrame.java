@@ -12,7 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
-import uk.co.alvagem.projectview.core.filters.TaskFilter;
 import uk.co.alvagem.projectview.model.Task;
 import uk.co.alvagem.swingui.ActionSet;
 import uk.co.alvagem.swingui.GUIBuilder;
@@ -78,7 +77,9 @@ public class TaskTableFrame extends JInternalFrame {
 
     private static class TaskTable extends JTable {
         
-        TaskTable(TableModel model){
+ 		private static final long serialVersionUID = 1L;
+
+		TaskTable(TableModel model){
             super(model);
             setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         }
